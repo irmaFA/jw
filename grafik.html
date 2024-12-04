@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Sistem Persamaan Linear Dua Variabel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- MathJax Script untuk render matematika -->
+    <script type="text/javascript">
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Mengatur desain global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            justify-content: space-between; /* Agar footer selalu di bawah */
+        }
+
+        /* Navbar */
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar-nav .nav-item {
+            padding: 5px 15px;
+        }
+
+        /* Mengatur lebar konten utama */
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px; /* Memberi jarak antar konten */
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: #1757fa;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section konten utama */
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #111111;
+            border-bottom: 2px solid #a05c04e7;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #2c1c07e7;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            text-align: justify;
+            color: #000000;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #000000;
+        }
+
+        /* Responsif untuk tampilan mobile */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
+            p, li {
+                font-size: 14px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            iframe {
+                min-height: 200px;
+            }
+        }
+
+        /* Responsif untuk iframe video */
+        iframe {
+            max-width: 100%;
+            height: auto;
+            border: 0;
+            border-radius: 8px;
+        }
+
+        /* Footer diatur dengan flexbox agar selalu di tengah halaman */
+        footer {
+            text-align: center;
+            margin: 20px auto;
+            font-size: 14px;
+            color: #000;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        /* Navbar Responsif */
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar-nav .nav-item {
+            padding: 5px 15px;
+        }
+
+        /* Memperbaiki tampilan kontainer dalam berbagai ukuran layar */
+        .container-fluid {
+            padding: 0 20px;
+        }
+
+        /* Meningkatkan keselarasan pada tampilan konten */
+        .steps ol, .example p {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary w-100">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="irma.html">HOME</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- Dropdown menu for Materi -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="materi.html" id="materiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            MATERI
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="materiDropdown">
+                            <li><a class="dropdown-item" href="eliminasi.html">Metode Eliminasi</a></li>
+                            <li><a class="dropdown-item" href="substitusi.html">Metode Substitusi</a></li>
+                            <li><a class="dropdown-item" href="campuran.html">Metode Campuran</a></li>
+                            <li><a class="dropdown-item" href="grafik.html">Metode Grafik</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="media.html">MEDIA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="latihan.html">LEMBAR KERJA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="kuis.html">TUGAS</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section>
+            <h2><strong>D. Metode Grafik</strong></h2>
+            <ol>
+            <p>
+                Metode grafik adalah salah satu cara menyelesaikan sistem persamaan linear dua variabel dengan cara menggambar grafik dari setiap persamaan. Titik potong antara kedua garis yang dihasilkan adalah solusi dari metode tersebut.
+            </p>
+            <p>Langkah-langkah Metode Grafik:</p>
+        <ol class="steps">
+                <li>Tentukan titik potong salah satu persamaan linear dengan sumbu \(x\) atau sumbu \(y\)</li>
+                <li>Hubungkan kedua titik potong dengan garis lurus</li>
+                <li>Lakukan langkah 1 dan 2 untuk persamaan lain pada SPLDV</li>
+                <li>Jika kedua titik berpotongan di \((x,y)\) = \((x1, y1)\), penyelesaian SPLD adalah \(x=x1\) dan \(y=y1\)</li>
+                <li>Jika kedua titik tidak berpotongan, SPLDV tidak memiliki penyelesaian </li>
+            </ol>
+            <p>
+                <strong>Untuk memahami langkah pengerjaan metode grafik, perhatikan contoh berikut:</strong>
+            </p>
+            <p>
+                Jumlah umur Ari dan Reno 20 tahun. Dua kali umur Ari ditambah tiga kali umur Reno menjadi 54 tahun.
+                Berapa umur mereka sekarang?
+            </p>
+
+            <p><strong>Penyelesaian:</strong></p>
+            <p>Misalkan:</p>
+            <p><strong>umur Ari adalah \( x \)</strong></p>
+            <p><strong>Umur Reno adalah \( y \)</strong></p>
+            <p>Maka, sistem persamaan linear dua variabel dari permasalahan tersebut adalah:</p>
+            <ul>
+                <li>$x + y = 20$ … \((i)\)</li>
+                <li>$2x + 3y = 54$ … \((ii)\)</li>
+            </ul>
+
+            <h2>Metode Grafik</h2>
+            <ol>
+                <li>
+                    <strong>Menentukan titik potong</strong>
+                    <table class="table table-bordered" style="width: 50%; font-size: 14px; margin: 10px auto; text-align: center;">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">\(x\)</th>
+                                <th style="text-align: center;">\(y\)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">0</td>
+                                <td style="text-align: center; vertical-align: middle;">20</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">20</td>
+                                <td style="text-align: center; vertical-align: middle;">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+                <li>
+                    <strong>Menentukan titik potong</strong>
+                    <table class="table table-bordered" style="width: 50%; font-size: 14px; margin: 10px auto; text-align: center;">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">\(x\)</th>
+                                <th style="text-align: center;">\(y\)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">0</td>
+                                <td style="text-align: center; vertical-align: middle;">18</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">27</td>
+                                <td style="text-align: center; vertical-align: middle;">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </li>
+            </ol>                       
+
+
+         <ol>   
+            <h2>Gambar Grafik</h2>
+            <img src="grafik.png" alt="Persamaan Linear Dua Variabel"style="max-width: 100%; height: auto;">
+            <hr style="border: 1px solid #4ca7af; width: 100%; margin: 20px auto;"> <!-- Garis berwarna hijau -->
+            <p>
+                Grafik menunjukkan titik potong di $(x, y) = (6, 14)$ sehingga umur Ari adalah 6 tahun dan umur Reno adalah 14 tahun.
+            </p>
+        </ol>
+</body>
+</html>

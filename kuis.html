@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Sistem Persamaan Linear Dua Variabel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            justify-content: space-between;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 22px;
+            color: #1757fa;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #111111;
+            border-bottom: 2px solid #a05c04e7;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #2c1c07e7;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            text-align: justify;
+            color: #000000;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #000000;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+
+            p, li {
+                font-size: 14px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            iframe {
+                min-height: 200px;
+            }
+        }
+
+        iframe {
+            max-width: 100%;
+            height: auto;
+            border: 0;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            margin: 20px auto;
+            font-size: 14px;
+            color: #000;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        .navbar-nav .nav-item {
+            padding: 5px 15px;
+        }
+
+        .container-fluid {
+            padding: 0 20px;
+        }
+
+        .steps ol, .example p {
+            margin-left: 20px;
+        }
+    </style>
+    <script>
+        function cekJawaban() {
+            const jawabanBenar = {
+                soal1: "A",
+                soal2: "B",
+                soal3: "A",
+                soal4: "B",
+                soal5: "C"
+            };
+
+            let hasil = "";
+            let skor = 0;
+            for (let i = 1; i <= 5; i++) {
+                const pilihan = document.querySelector(`input[name="soal${i}"]:checked`);
+                if (pilihan) {
+                    if (pilihan.value === jawabanBenar[`soal${i}`]) {
+                        hasil += `Soal ${i}: Benar<br>`;
+                        skor++;
+                    } else {
+                        hasil += `Soal ${i}: Salah (Jawaban yang benar: ${jawabanBenar[`soal${i}`]})<br>`;
+                    }
+                } else {
+                    hasil += `Soal ${i}: Belum dijawab<br>`;
+                }
+            }
+
+            const hasilDiv = document.getElementById("hasil");
+            hasilDiv.innerHTML = `
+                <h2>Hasil:</h2>
+                ${hasil}
+                <p><strong>Skor Anda: ${skor}/5</strong></p>
+            `;
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary w-100">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="irma.html">HOME</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="materiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">MATERI</a>
+                        <ul class="dropdown-menu" aria-labelledby="materiDropdown">
+                            <li><a class="dropdown-item" href="eliminasi.html">Metode Eliminasi</a></li>
+                            <li><a class="dropdown-item" href="substitusi.html">Metode Substitusi</a></li>
+                            <li><a class="dropdown-item" href="campuran.html">Metode Campuran</a></li>
+                            <li><a class="dropdown-item" href="grafik.html">Metode Grafik</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="media.html">MEDIA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="latihan.html">LEMBAR KERJA</a></li>
+                    <li class="nav-item"><a class="nav-link" href="kuis.html">TUGAS</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Soal Pilihan Ganda: Sistem Persamaan Linear Dua Variabel (SPLDV)</h1>
+        </header>
+
+        <form>
+            <ol>
+                <li>
+                    Jika <i>x + y = 10</i> dan <i>2x - y = 4</i>, maka nilai <i>x</i> dan <i>y</i> adalah?
+                    <br>
+                    <input type="radio" name="soal1" value="A"> A. x = 4, y = 6<br>
+                    <input type="radio" name="soal1" value="B"> B. x = 5, y = 5<br>
+                    <input type="radio" name="soal1" value="C"> C. x = 3, y = 7<br>
+                    <input type="radio" name="soal1" value="D"> D. x = 6, y = 4<br>
+                </li>
+
+                <li>
+                    Jika <i>3x + 2y = 18</i> dan <i>x - y = 2</i>, maka nilai <i>x</i> dan <i>y</i> adalah?
+                    <br>
+                    <input type="radio" name="soal2" value="A"> A. x = 4, y = 3<br>
+                    <input type="radio" name="soal2" value="B"> B. x = 5, y = 2<br>
+                    <input type="radio" name="soal2" value="C"> C. x = 6, y = 0<br>
+                    <input type="radio" name="soal2" value="D"> D. x = 3, y = 5<br>
+                </li>
+
+                <li>
+                    Hasil penyelesaian SPLDV <i>4x + y = 19</i> dan <i>2x - y = 3</i> adalah?
+                    <br>
+                    <input type="radio" name="soal3" value="A"> A. x = 4, y = 3<br>
+                    <input type="radio" name="soal3" value="B"> B. x = 3, y = 4<br>
+                    <input type="radio" name="soal3" value="C"> C. x = 5, y = 2<br>
+                    <input type="radio" name="soal3" value="D"> D. x = 6, y = 1<br>
+                </li>
+
+                <li>
+                    Jika <i>x + 2y = 8</i> dan <i>3x - y = 9</i>, maka hasilnya adalah?
+                    <br>
+                    <input type="radio" name="soal4" value="A"> A. x = 3, y = 2<br>
+                    <input type="radio" name="soal4" value="B"> B. x = 2, y = 3<br>
+                    <input type="radio" name="soal4" value="C"> C. x = 4, y = 1<br>
+                    <input type="radio" name="soal4" value="D"> D. x = 1, y = 4<br>
+                </li>
+
+                <li>
+                    Sistem persamaan <i>3x + 5y = 21</i> dan <i>2x - y = 4</i> memiliki solusi x dan y sebagai?
+                    <br>
+                    <input type="radio" name="soal5" value="A"> A. x = 4, y = 2<br>
+                    <input type="radio" name="soal5" value="B"> B. x = 3, y = 3<br>
+                    <input type="radio" name="soal5" value="C"> C. x = 2, y = 4<br>
+                    <input type="radio" name="soal5" value="D"> D. x = 5, y = 1<br>
+                </li>
+            </ol>
+
+            <button type="button" class="btn btn-primary" onclick="cekJawaban()">Cek Jawaban</button>
+        </form>
+
+        <div id="hasil"></div>
+    </div>
+
+    <footer>
+        <p>© 2024 Sistem Persamaan Linear Dua Variabel</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
